@@ -2,6 +2,7 @@
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "linked_list.h"
 
 // File for sandboxing and trying out code
 int main(int argc, char **argv) {

@@ -2,6 +2,7 @@
 #include <stdio.h>  /* printf */
 #include <stdlib.h> /* malloc, free */
 
+
 #include "linked_list.h"
 
 /* functions to create lists */
@@ -24,22 +25,38 @@ void free_list(node *p) {
 
 /* print list to console */
 void print_list(node *p) {
-  // Add your code for exercise 1
-  // There is NO testcode for this
+  if(p->next == NULL) {
+    return; //end of list
+  }
+  else {
+    printf(" %d ",p->value); //print current node
+    print_list(p->next); //move to next node
+  }
 }
 
 int sum_squares(node *p) {
   // Add your code for excercise 2
-  // You can find the tests in tests.cpp
-  return -1;
+  if (p == NULL) 
+    return 0; //base case
+  else {
+    return p->value*p->value + sum_squares(p->next); //return the element^2 and then find the next element.
+  }
 }
 
 typedef int (*fn_int_to_int)(int);
 
 node *map(node *p, fn_int_to_int f) { 
-  // Add your code for excercise 3
-  
-  return NULL; 
+  node *temp = malloc(sizeof(node));
+
+  if (p == NULL) {
+    return NULL; //returns NULL, as the new list also needs a null pointer in the end. 
+  }
+  else {
+    temp->value = f(p->value); //make temps value p->value squared
+    temp->next = map(p->next,f); //make connection, and send p and function
+    return temp; //return pointer for every function call
+  }
+
 }
 
 int square(int x) { return x * x; }
